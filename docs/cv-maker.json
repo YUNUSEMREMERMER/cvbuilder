@@ -1,0 +1,1126 @@
+"BaseUri" : "/users/{userId}/cvs/{cvId}/"
+
+//Constant Data
+
+// Education Level
+GET "/api/educations/level"
+Success:
+{
+    [
+        {
+            "levelId": "1",
+            "levelName": "High School"
+        },
+        {
+            "levelId": "2",
+            "levelName": "University"
+        }
+    ],
+}
+Error: {
+    "errorCode" : "CV-1001",
+    "errorMessage" : "Education level not found",
+    "httpCode" :  404  
+}
+
+// University
+GET "/api/educations/university"
+Success: {
+    [
+        {
+            "universityId": "1",
+            "universityName": "Istanbul Teknik Universitesi"
+        },
+        {
+            "universityId": "2",
+            "universityName": "Orta Dogu Teknik Universitesi"
+        }
+    ]
+}
+Error : {
+    "errorCode" : "CV-1002",
+    "errorMessage" : "University not found",
+    "httpCode" :  404  
+}
+
+
+
+// Education Department
+
+
+GET "/api/educations/department"
+Success: {
+    [
+        {
+            "departmentId": "1",
+            "departmentName": "Bilgisayar Muhendisligi"
+        },
+        {
+            "departmentId": "2",
+            "departmentName": "Yazilim Muhendisligi"
+        }
+    ]
+}
+Error : {
+    "errorCode" : "CV-1003",
+    "errorMessage" : "Department not found",
+    "httpCode" :  404  
+}
+
+// Language
+GET "/api/languages/language"
+Success: {
+    [
+        {
+            "languageId": "1",
+            "languageName": "Ingilizce"
+        },
+        {
+            "languageId": "2",
+            "languageName": "Turkce"
+        }
+    ]
+}
+Error : {
+    "errorCode" : "CV-1004",
+    "errorMessage" : "Language not found",
+    "httpCode" :  404  
+}
+
+//Language Level
+GET "/api/languages/level"
+Success: {
+    [
+        {
+            "levelId": "1",
+            "levelName": "A1"
+        },
+        {
+            "levelId": "2",
+            "levelName": "A2"
+        }
+    ]
+}
+Error : {
+    "errorCode" : "CV-1005",
+    "errorMessage" : "Language level not found",
+    "httpCode" :  404  
+}
+
+// Skill - {Programming Language}
+GET "/api/skills/skill"
+Success: {
+    [
+        {
+            "skillId": "1",
+            "skillName": "Java"
+        },
+        {
+            "skillId": "2",
+            "skillName": "Python"
+        }
+    ]
+}
+Error : {
+    "errorCode" : "CV-1006",
+    "errorMessage" : "Skill not found",
+    "httpCode" :  404  
+}
+
+// Skill Level
+GET "/api/skills/level"
+Success: {
+    [
+        {
+            "levelId": "1",
+            "levelName": "Senior"
+        },
+        {
+            "levelId": "2",
+            "levelName": "Junior"
+        },
+    ]
+}
+Error : {
+    "errorCode" : "CV-1007",
+    "errorMessage" : "Skill level not found",
+    "httpCode" :  404  
+}
+
+// Cities
+GET "/api/cities/"
+Success: {
+    [
+        {
+            "cityId": "1",
+            "cityName": "Adana"
+        },
+        {
+            "cityId": "2",
+            "cityName": "Adiyaman"
+        },
+    ]
+}
+Error : {
+    "errorCode" : "CV-1008",
+    "errorMessage" : "City not found",
+    "httpCode" :  404  
+}
+
+
+// Experience Position
+GET "/api/experiences/position"
+Success: {
+    [
+        {
+            "positionId": "1",
+            "positionName": "Proje Yöneticisi"
+        },
+        {
+            "positionId": "2",
+            "positionName": "Kidemli Yazilim Gelistirici"
+        },
+    ]
+}
+Error : {
+    "errorCode" : "CV-1009",
+    "errorMessage" : "Position not found",
+    "httpCode" :  404  
+}
+
+// Experience Department
+GET "/api/experiences/department"
+Success: {
+    [
+        {
+            "departmentId": "1",
+            "departmentName": "Yazilim Departmani"
+        },
+        {
+            "departmentId": "2",
+            "departmentName": "IT"
+        }
+    ]
+}
+Error : {
+    "errorCode" : "CV-1010",
+    "errorMessage" : "Job Department not found",
+    "httpCode" :  404  
+}
+
+// bundan sonrasının kod çıktıları üst taraftaki gibi olacaktır 
+
+// Hobby
+
+GET "/api/{BaseUri}/hobbies/"
+{
+    "Success": {
+        [
+            {
+                "hobbyId": "1",
+                "userId" : "{userId}",
+                "hobbyName" : "Kitap Okumak"
+            },
+            {
+                "hobbyId": "2",
+                "userId" : "{userId}",
+                "hobbyName" : "Yuruyus Yapmak"
+            }
+        ]
+    },
+    "Error" : {
+        [
+            {
+                "errorCode" : "CV-1011",
+                "errorMessage" : "Hobby not found",
+                "httpCode" :  404  
+            },
+            {
+                "errorCode" : "CV-1012",
+                "errorMessage" : "User ID not found",
+                "httpCode" :  404 
+            }
+        ]
+    }
+}
+
+POST "/api/{BaseUri}/hobbies/"
+{
+    "Input": {
+        "hobbyName":"Televizyon Izlemek"
+    },
+    "Error" : {
+        "errorCode" : "CV-1013",
+        "errorMessage" : "Hobby could not added",
+        "httpCode" : 400 //422
+    }
+}
+
+PUT/PATCH "/api/{BaseUri}/hobbies/{id}"
+{
+    "Input": {
+        "hobbyId": "{id}",
+        //"userId" : "{userId}",
+        "hobbyName":"Oyun Oynamak"
+    },
+    "Error" : {
+        "errorCode" : "CV-1014",
+        "errorMessage" : "Hobby could not update",
+        "httpCode" : 400 //422
+    }
+}
+
+DELETE "/api/{BaseUri}/hobbies/{id}"
+{
+    "Success": {},
+    "Error" : {
+        "errorCode" : "CV-1015",
+        "errorMessage" : "Hobby could not delete",
+        "httpCode" :  400
+    }
+}
+
+// Education
+
+GET "/api/{BaseUri}/educations/"
+{
+    "Success": {
+        [
+            {
+                "educationId": "1",
+                "userId" : "{userId}",
+                "educationLevelId" : "1",
+                "universityId" : "1",
+                "deparmentId" : "1",
+                "startDate" : "2022-06-06",
+                "endDate" : "2022-06-27",
+                "isStillStudent" : true
+            },
+            {
+                "educationId": "2",
+                "userId" : "{userId}",
+                "educationLevelId" : "2",
+                "universityId" : "1",
+                "deparmentId" : "2",
+                "startDate" : "2021-03-06",
+                "endDate" : "2021-11-27",
+                "isStillStudent" : false
+            }
+        ]
+    },
+    "Error" : {
+        [
+            {
+                "errorCode" : "CV-1016",
+                "errorMessage" : "Education not found",
+                "httpCode" :  404  
+            },
+            {
+                "errorCode" : "CV-1012",
+                "errorMessage" : "User ID not found",
+                "httpCode" :  404 
+            }
+        ]
+    }
+}
+
+POST "/api/{BaseUri}/educations/"
+{
+    "Input": {
+        "educationLevelId" : "2",
+        "universityId" : "2",
+        "deparmentId" : "2",
+        "startDate" : "2021-01-01",
+        "endDate" : "2022-01-11",
+        "isStillStudent" : false
+    },
+    "Error" : {
+        [
+            {
+                "errorCode" : "CV-1017",
+                "errorMessage" : "Education could not added",
+                "httpCode" : 400 //422
+            },
+            {
+                "errorCode" : "CV-1058",
+                "errorMessage" : "Education Level Id required",
+                "httpCode" : 400 //422
+            }
+        ]
+        
+    }
+}
+
+PUT/PATCH "/api/{BaseUri}/educations/{id}"
+{
+    "Input": {
+        "educationId": "{id}",
+        //"userId" :"{userId}"
+        "educationLevelId" : "1",
+        "universityId" : "1",
+        "deparmentId" : "1",
+        "startDate" : "2022-01-01",
+        "endDate" : "2022-05-11",
+        "isStillStudent" : true
+    },
+    "Error" : {
+        "errorCode" : "CV-1018",
+        "errorMessage" : "Education could not update",
+        "httpCode" : 400 //422
+    }
+}
+
+DELETE "/api/{BaseUri}/educations/{id}"
+{
+    "Success": {},
+    "Error" : {
+        "errorCode" : "CV-1019",
+        "errorMessage" : "Education could not delete",
+        "httpCode" :  400
+    }
+}
+
+// Language
+
+GET "/api/{BaseUri}/languages/"
+{
+    "Success": {
+        [
+            {
+                "languageId": "1",
+                "userId" : "{userId}",
+                "languageNameId" : "2",
+                "languageLevelId" : "2"
+            },
+            {
+                "languageId": "2",
+                "userId" : "{userId}",
+                "languageNameId" : "1",
+                "languageLevelId" : "1"
+            }
+        ]
+    },
+    "Error" : {
+        [
+            {
+                "errorCode" : "CV-1020",
+                "errorMessage" : "Language not found",
+                "httpCode" :  404  
+            },
+            {
+                "errorCode" : "CV-1012",
+                "errorMessage" : "User ID not found",
+                "httpCode" :  404 
+            }
+        ]
+    }
+}
+
+POST "/api/{BaseUri}/languages/"
+{
+    "Input": {
+        "languageNameId" : "1",
+        "languageLevelId" : "2"
+    },
+    "Error" : {
+        "errorCode" : "CV-1021",
+        "errorMessage" : "Language could not added",
+        "httpCode" : 400 //422
+    }
+}
+
+PUT/PATCH "/api/{BaseUri}/languages/{id}" 
+{
+    "Input": {
+        "languageId": "{id}",
+        //"userId" :"{userId}"
+        "languageNameId" : "1",
+        "languageLevelId" : "2"
+    },
+    "Error" : {
+        "errorCode" : "CV-1022",
+        "errorMessage" : "Language could not update",
+        "httpCode" : 400 //422
+    }
+}
+
+DELETE "/api/{BaseUri}/languages/{id}"
+{
+    "Success": {},
+    "Error" : {
+        "errorCode" : "CV-1023",
+        "errorMessage" : "Language could not delete",
+        "httpCode" :  400
+    }
+}
+
+
+// Skill
+
+GET "/api/{BaseUri}/skills"
+{
+    "Success": {
+        [
+            {
+                "skillId": "1",
+                "userId" : "{userId}",
+                "skillNameId" : "1",
+                "skillLevelId" : "1"
+            },
+            {
+                "skillId": "2",
+                "userId" : "{userId}",
+                "skillNameId" : "2",
+                "skillLevelId" : "2"
+            }
+        ]
+    },
+    "Error" : {
+        [
+            {
+                "errorCode" : "CV-1024",
+                "errorMessage" : "Skill not found",
+                "httpCode" :  404  
+            },
+            {
+                "errorCode" : "CV-1012",
+                "errorMessage" : "User ID not found",
+                "httpCode" :  404 
+            }
+        ]
+    }
+}
+
+POST "/api/{BaseUri}/skills/"
+{
+    "Input": {
+        "skillNameId" : "2",
+        "skillLevelId" : "1"
+    },
+    "Error" : {
+        "errorCode" : "CV-1025",
+        "errorMessage" : "Skill could not added",
+        "httpCode" : 400 //422
+    }
+}
+
+PUT/PATCH "/api/{BaseUri}/skills/{id}"
+{
+    "Input": {
+        "skillId": "{id}",
+        //"userId" :"{userId}"
+        "skillNameId" : "1",
+        "skillLevelId" : "1"
+    },
+    "Error" : {
+        "errorCode" : "CV-1026",
+        "errorMessage" : "Skill could not update",
+        "httpCode" : 400 //422
+    }
+}
+
+DELETE "/api/{BaseUri}/skills/{id}"
+{
+    "Success": {},
+    "Error" : {
+        "errorCode" : "CV-1027",
+        "errorMessage" : "Skill could not delete",
+        "httpCode" :  400
+    }
+}
+
+
+// Certificate
+
+GET "/api/{BaseUri}/certificates/"
+{
+    "Success": {
+        [
+            {
+                "certificateId": "1",
+                "userId" : "{userId}",
+                "programName" : "Backend 101",
+                "issuer" : "Appcent",
+                "receivedDate" : "2022-04-22"
+            }
+        ]
+    },
+    "Error" : {
+        [
+            {
+                "errorCode" : "CV-1028",
+                "errorMessage" : "Certificate not found",
+                "httpCode" :  404  
+            },
+            {
+                "errorCode" : "CV-1012",
+                "errorMessage" : "User ID not found",
+                "httpCode" :  404 
+            }
+        ]
+    }
+}
+
+POST "/api/{BaseUri}/certificates/"
+{
+    "Input": {
+        "programName" : "Backend 201",
+        "issuer" : "Appcent Akademi",
+        "receivedDate" : "2022-06-26"
+    },
+    "Error" : {
+        "errorCode" : "CV-1029",
+        "errorMessage" : "Certificate could not added",
+        "httpCode" : 400 //422
+    }
+}
+
+PUT/PATCH "/api/{BaseUri}/certificates/{id}"
+{
+    "Input": {
+        "certificateId": "{id}",
+        //"userId" :"{userId}"
+        "programName" : "Backend 301",
+        "issuer" : "Appcent Design",
+        "receivedDate" : "2022-06-25"
+    },
+    "Error" : {
+        "errorCode" : "CV-1030",
+        "errorMessage" : "Certificate could not update",
+        "httpCode" : 400 //422
+    }
+}
+
+DELETE "/api/{BaseUri}/certificates/{id}"
+{
+    "Success": {},
+    "Error" : {
+        "errorCode" : "CV-1031",
+        "errorMessage" : "Certificate could not delete",
+        "httpCode" :  400
+    }
+}
+
+
+// Achievement
+
+GET "/api/{BaseUri}/achievements"
+{
+    "Success": {
+        [
+            {
+                "achievementId": "1",
+                "userId" : "{userId}",
+                "achievementName" : "Yilin En İyi Yazilimcisi",
+            }
+        ]
+    },
+    "Error" : {
+        [
+            {
+                "errorCode" : "CV-1032",
+                "errorMessage" : "Achievement not found",
+                "httpCode" :  404  
+            },
+            {
+                "errorCode" : "CV-1012",
+                "errorMessage" : "User ID not found",
+                "httpCode" :  404 
+            }
+        ]
+    }
+}
+
+POST "/api/{BaseUri}/achievements/"
+{
+    "Input": {
+        "achievementName" : "Yilin En İyi Insan Kaynaklari Uzmani",
+    },
+    "Error" : {
+        "errorCode" : "CV-1033",
+        "errorMessage" : "Achievement could not added",
+        "httpCode" : 400 //422
+    }
+}
+
+PUT/PATCH "/api/{BaseUri}/achievements/{id}"
+{
+    "Input": {
+        "achievementId": "{id}",
+        //"userId" :"{userId}"
+        "achievementName" : "Yilin En İyi Ogretim Uyesi",
+    },
+    "Error" : {
+        "errorCode" : "CV-1034",
+        "errorMessage" : "Achievement could not update",
+        "httpCode" : 400 //422
+    }
+}
+
+DELETE "/api/{BaseUri}/achievements/{id}"
+{
+    "Success": {},
+    "Error" : {
+        "errorCode" : "CV-1035",
+        "errorMessage" : "Achievement could not delete",
+        "httpCode" :  400
+    }
+}
+
+
+
+// Project
+
+GET "/api/{BaseUri}/projects"
+{
+    "Success": {
+        [
+            {
+                "projectId": "1",
+                "userId" : "{userId}",
+                "projectTitle" : "CV Maker",
+                "projectDescription" : "Kayıt Olan Herkes Icin CV Uygulaması",
+            }
+        ]
+    },
+    "Error" : {
+        [
+            {
+                "errorCode" : "CV-1036",
+                "errorMessage" : "Project not found",
+                "httpCode" :  404  
+            },
+            {
+                "errorCode" : "CV-1012",
+                "errorMessage" : "User ID not found",
+                "httpCode" :  404 
+            }
+        ]
+    }
+}
+
+POST "/api/{BaseUri}/projects/"
+{
+    "Input": {
+        "projectTitle" : "Design Pattern",
+        "projectDescription" : "Kurumsal Mimari Icin Design Pattern",
+    },
+    "Error" : {
+        "errorCode" : "CV-1037",
+        "errorMessage" : "Project could not added",
+        "httpCode" : 400 //422
+    }
+}
+
+PUT/PATCH "/api/{BaseUri}/projects/{id}"
+{
+    "Input":  {
+        "projectId": "{id}",
+        //"userId" :"{userId}"
+        "projectTitle" : "Spring Boot Backend Projesi",
+        "projectDescription" : "Kurumsal Proje",
+    },
+    "Error" : {
+        "errorCode" : "CV-1038",
+        "errorMessage" : "Project could not update",
+        "httpCode" : 400 //422
+    }
+}
+
+DELETE "/api/{BaseUri}/projects/{id}"
+{
+    "Success": {},
+    "Error" : {
+        "errorCode" : "CV-1039",
+        "errorMessage" : "Project could not delete",
+        "httpCode" :  400
+    }
+}
+
+
+// Experience
+
+GET "/api/{BaseUri}/experiences"
+{
+    "Success": {
+        [
+            {
+                "experienceId": "1",
+                "userId" : "{userId}",
+                "companyName" : "Appcent",
+                "startDate" : "2022-06-06",
+                "endDate" : "2022-08-26",
+                "positionId" : "1",
+                "departmentId" : "1",
+                "jobDescription" : "Backend Developer - Intern",
+                "isStillWorking" : true
+            }
+        ]
+    },
+    "Error" : {
+        [
+            {
+                "errorCode" : "CV-1040",
+                "errorMessage" : "Experience not found",
+                "httpCode" :  404  
+            },
+            {
+                "errorCode" : "CV-1012",
+                "errorMessage" : "User ID not found",
+                "httpCode" :  404 
+            }
+        ]
+    }
+}
+
+POST "/api/{BaseUri}/experiences/"
+{
+    "Input": {
+        "companyName" : "Appcent Design",
+        "startDate" : "2021-01-01",
+        "endDate" : "2021-05-21",
+        "positionId" : "2",
+        "departmentId" : "2",
+        "jobDescription" : "Flutter Developer - Intern",
+        "isStillWorking" : true
+    },
+    "Error" : {
+        "errorCode" : "CV-1041",
+        "errorMessage" : "Experience could not added",
+        "httpCode" : 400 //422
+    }
+}
+
+PUT/PATCH "/api/{BaseUri}/experiences/{id}"
+{
+    "Input":  {
+        "experienceId": "{id}",
+        //"userId" :"{userId}"
+        "companyName" : "Appcent Akademi",
+        "startDate" : "2022-04-06",
+        "endDate" : "2022-06-26",
+        "positionId" : "1",
+        "departmentId" : "1",
+        "jobDescription" : "FrontEnd Developer - Intern",
+        "isStillWorking" : false
+    },
+    "Error" : {
+        "errorCode" : "CV-1042",
+        "errorMessage" : "Experience could not update",
+        "httpCode" : 400 //422
+    }
+}
+
+DELETE "/api/{BaseUri}/experiences/{id}"
+{
+    "Success": {},
+    "Error" : {
+        "errorCode" : "CV-1043",
+        "errorMessage" : "Experience could not delete",
+        "httpCode" :  400
+    }
+}
+
+
+
+// Link
+
+GET "/api/{BaseUri}/links"
+{
+    "Success": {
+        [
+            {
+                "linkId": "1",
+                "userIds" : "{userId}",
+                "linkName" : "github.com/sametcanal53",
+            }
+        ]
+    },
+    "Error" : {
+        [
+            {
+                "errorCode" : "CV-1044",
+                "errorMessage" : "Link not found",
+                "httpCode" :  404  
+            },
+            {
+                "errorCode" : "CV-1012",
+                "errorMessage" : "User ID not found",
+                "httpCode" :  404 
+            }
+        ]
+    }
+}
+
+POST "/api/{BaseUri}/links/"
+{
+    "Input": {
+        "linkName" : "github.com/gazi-dis",
+    },
+    "Error" : {
+        "errorCode" : "CV-1045",
+        "errorMessage" : "Link could not added",
+        "httpCode" : 400 //422
+    }
+}
+
+PUT/PATCH "/api/{BaseUri}/links/{id}"
+{
+    "Input":  {
+        "linkId": "{id}",
+        //"userId" :"{userId}"
+        "linkName" : "github.com/yunusemremermer",
+    },
+    "Error" : {
+        "errorCode" : "CV-1046",
+        "errorMessage" : "Link could not update",
+        "httpCode" : 400 //422
+    }
+}
+
+DELETE "/api/{BaseUri}/links/{id}"
+{
+    "Success": {},
+    "Error" : {
+        "errorCode" : "CV-1047",
+        "errorMessage" : "Link could not delete",
+        "httpCode" :  400
+    }
+}
+
+// CVs
+
+GET "/api/users/{userId}/cvs"
+{
+    "Success": {
+        [
+            {
+                "cvId" : "1",
+                "userId" : "{userId}",
+                "name" : "Ahmet",
+                "surname" : "YEMEZ",
+                "email" : "ahmet@mail.com",
+                "phone" : "5527895236",
+                "picture" : null,
+                "shortResume" : "Lorem ipsum dolor sit amet consectetur adipisicing elit. A laborum ad ipsa harum hic excepturi?",
+                "cityId" : 34,
+                "cvLink":"5asd455-asd4556-5asd4.pdf",
+                "links" :[
+                    {
+                        "linkId": "1",
+                        "userId" : "{userId}",
+                        "linkName" : "github.com/sametcanal53",
+                    }
+                ],
+                "experiences" : [
+                    {
+                        "experienceId": "1",
+                        "userId" : "{userId}",
+                        "companyName" : "Appcent",
+                        "startDate" : "2022-06-06",
+                        "endDate" : "2022-08-26",
+                        "positionId" : "1",
+                        "departmentId" : "1",
+                        "jobDescription" : "Backend Developer - Intern",
+                        "isStillWorking" : true
+                    }
+                ],
+                "projects" : [
+                    {
+                        "projectId": "1",
+                        "userId" : "{userId}",
+                        "projectTitle" : "CV Maker",
+                        "projectDescription" : "Kayıt Olan Herkes Icin CV Uygulaması",
+                    }
+                ],
+                "educations" : [
+                    {
+                        "educationId": "1",
+                        "userId" : "{userId}",
+                        "educationLevelId" : "1",
+                        "universityId" : "1",
+                        "deparmentId" : "1",
+                        "startDate" : "2022-06-06",
+                        "endDate" : "2022-06-27",
+                        "isStillStudent" : true
+                    }
+                ],
+                "languages" : [
+                    {
+                        "languageId": "1",
+                        "userId" : "{userId}",
+                        "languageNameId" : "2",
+                        "languageLevelId" : "2"
+                    }
+                ],
+                "skills" : [
+                    {
+                        "skillId": "1",
+                        "userId" : "{userId}",
+                        "skillNameId" : "1",
+                        "skillLevelId" : "1"
+                    }
+                ],
+                "certificates" : [
+                    {
+                        "certificateId": "1",
+                        "userId" : "{userId}",
+                        "programName" : "Backend 101",
+                        "issuer" : "Appcent",
+                        "receivedDate" : "2022-04-22"
+                    }
+                ],
+                "achievements" : [
+                    {
+                        "achievementId": "1",
+                        "userId" : "{userId}",
+                        "achievementName" : "Yilin En İyi Yazilimcisi",
+                    }
+                ],
+                "hobbies" : [
+                    {
+                        "hobbyId": "1",
+                        "userId" : "{userId}",
+                        "hobbyName" : "Kitap Okumak"
+                    }
+                ],
+            }
+        ]
+    },
+    "Error" : {
+        [
+            {
+                "errorCode" : "CV-1012",
+                "errorMessage" : "User ID not found",
+                "httpCode" :  404 
+            },
+            {
+                "errorCode" : "CV-1048",
+                "errorMessage" : "Links not found",
+                "httpCode" :  404  
+            },
+            {
+                "errorCode" : "CV-1049",
+                "errorMessage" : "Hobbies not found",
+                "httpCode" :  404  
+            },
+            {
+                "errorCode" : "CV-1050",
+                "errorMessage" : "Education informations not found",
+                "httpCode" :  404  
+            },
+            {
+                "errorCode" : "CV-1051",
+                "errorMessage" : "Languages not found",
+                "httpCode" :  404  
+            },
+            {
+                "errorCode" : "CV-1052",
+                "errorMessage" : "Skills not found",
+                "httpCode" :  404  
+            },
+            {
+                "errorCode" : "CV-1053",
+                "errorMessage" : "Certificates not found",
+                "httpCode" :  404  
+            },
+            {
+                "errorCode" : "CV-1054",
+                "errorMessage" : "Achievements not found",
+                "httpCode" :  404  
+            },
+            {
+                "errorCode" : "CV-1055",
+                "errorMessage" : "Projects not found",
+                "httpCode" :  404  
+            },
+            {
+                "errorCode" : "CV-1056",
+                "errorMessage" : "Experiences not found",
+                "httpCode" :  404  
+            },
+        ]
+    }
+}
+
+POST "/api/users/{userId}/cvs"
+{
+    "Input": {
+        "name" : "Ahmet",
+        "surname" : "YEMEZ",
+        "email" : "ahmet@mail.com",
+        "phone" : "5527895236",
+        "picture" : null,
+        "cityId" : 34,
+        "shortResume" : "Kısa özgeçmişim lorem ipsum dolor",
+    },
+    "Error" : {
+        [
+            {
+                "errorCode" : "CV-1057",
+                "errorMessage" : "Name field is required",
+                "httpCode" : 400
+            },
+            {
+                "errorCode" : "CV-1059",
+                "errorMessage" : "Surname field is required",
+                "httpCode" : 400
+            },
+            {
+                "errorCode" : "CV-1060",
+                "errorMessage" : "Email field is required",
+                "httpCode" : 400
+            },
+            {
+                "errorCode" : "CV-1061",
+                "errorMessage" : "Phone field is required",
+                "httpCode" : 400
+            },
+            {
+                "errorCode" : "CV-1062",
+                "errorMessage" : "City field is required",
+                "httpCode" : 400
+            },
+            {
+                "errorCode" : "CV-1063",
+                "errorMessage" : "CV could not added",
+                "httpCode" : 404 //422
+            },
+            
+        ]
+    }
+}
+
+PUT/PATCH "/api/{BaseUri}"
+{
+    "Input":  {
+        //"cvId" : "{cvId},
+        //"userId" : "{userId}",
+        "name" : "Mehmet",
+        "surname" : "YILDIZ",
+        "email" : "mehmet@mail.com",
+        "phone" : "5527895235",
+        "picture" : null,
+        "cityId" : 33,
+        "shortResume" : "Kısa özgeçmişim lorem ipsum dolor",
+    },
+    "Error" : {
+        "errorCode" : "CV-1064",
+        "errorMessage" : "CV could not update",
+        "httpCode" : 400 //422
+    }
+}
+
+DELETE "/api/{BaseUri}"
+{
+    "Success": {},
+    "Error" : {
+        "errorCode" : "CV-1065",
+        "errorMessage" : "CV could not delete",
+        "httpCode" :  400
+    }
+}
+
+// CV Link Generate
+//HTML tema pdf'e çevirildiğinde CV link oluşturulucak
+

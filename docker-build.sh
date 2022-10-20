@@ -1,0 +1,1 @@
+docker build -t cvbuilder:0.0.1 .
